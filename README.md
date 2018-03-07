@@ -1,4 +1,6 @@
 TO-DO: 
-1. add DnD-react functionality
-2. fix webpack.config.prod.js
-3. add immutable.js for reducer
+- [ ] add DnD-react functionality
+- [X] fix webpack.config.prod.js
+- [ ] add immutable.js for reducer
+
+[Live demo](https://test.mamikonyan.info/)
