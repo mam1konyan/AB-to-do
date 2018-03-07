@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import reducer from './store/reducer';
 import { Provider } from 'react-redux';
 
-import './style.scss';
+import './style.css';
 import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 

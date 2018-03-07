@@ -1,5 +1,6 @@
 import React from 'react';
 import Column from './Column/Column';
+import { DragDropContext } from 'react-dnd';
 
 const ProsCons = (props) => {
     
