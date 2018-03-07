@@ -1,0 +1,48 @@
+.table {
+
+    &__childWrapper {
+        @include flexbox;
+        height: $height-body - $height-header;
+        align-items: flex-start;
+        overflow-y: scroll;
+    }
+
+    &__childItem {
+        width: 50%;
+        border-right: 1px solid $border-main;
+        box-sizing: border-box;
+        min-height: 100%;
+
+        &:last-child {
+            border-right: none; 
+            border-left: 1px solid $border-main;
+            margin-left: -1px;
+        }
+    }
+
+    &__row {
+        @include flexbox;
+        height: $height-row;
+        padding-right: 10px;
+
+        &--first {
+            @include flexbox;
+            height: 45px;
+            border-bottom: 1px solid $border-main;
+            text-transform: uppercase;
+        }
+    }
+
+    &__index {
+        @include flexbox;
+        flex: 1;
+    }
+
+    &__input {
+        flex: 8;
+        border: none;
+        border: none;
+        background: none;
+        font-size: 16px;
+    }
+}

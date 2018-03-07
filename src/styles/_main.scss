@@ -1,0 +1,15 @@
+@mixin flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    @include flexbox;
+    height: 100vh;
+    background: $background-main;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: $text-main;
+}

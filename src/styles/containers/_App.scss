@@ -1,0 +1,18 @@
+.table {
+
+    &__body {
+        width: $width-body;
+        height: $height-body;
+        border: 1px solid $border-main;
+    }
+
+    &__title {
+        @include flexbox;
+        height: $height-header;
+        border-bottom: 1px solid $border-main;
+        box-sizing: border-box;
+        background: $background-title;
+        color: $text-title;
+        font-size: 18px;
+    }
+}
