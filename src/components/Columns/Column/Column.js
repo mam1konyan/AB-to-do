@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Row from './Row/Row';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-const Column = (props) => {
-
-    return (
-        <div className="table__childItem">
-            <div className="table__row--first">{props.label}</div>
-            {
-                props.valuesArr.map((item, i) => (
-                    <div className="table__row" key={props.label+i}>
-                        <span className="table__index">{i + 1}.</span>
-                        <input
-                            type="text"
-                            className="table__input"
-                            value={props.valuesArr[i]}
-                            onChange={(val) => {
-                                props.onProsConsChange(props.label, i, val.target.value);
-                            }}
+class Column extends Component {
+    render() {
+        return (
+            <div className="table__childItem">
+                <div className="table__row--first">{this.props.label}</div>
+                {
+                    this.props.valuesArr.map((item, i) => (
+                        <Row
+                            key={this.props.label + i}
+                            label={this.props.label}
+                            index={i}
+                            valuesArr={this.props.valuesArr}
+                            onProsConsChange={this.props.onProsConsChange}
                         />
-                    </div>
-                ))
-            }
-        </div>
-    )
+                    ))
+                }
+            </div>
+        )
+    }
 };
 
-export default Column;
+export default DragDropContext(HTML5Backend)(Column);
