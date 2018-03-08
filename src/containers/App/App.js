@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Columns from '../../components/Columns/Columns';
 import { connect } from 'react-redux';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
 class App extends Component {
 
@@ -26,16 +28,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="table__body">
-        <div className="table__title">
-          {this.props.title}
-        </div>
-        <Columns 
-          onProsConsChange={(type, index, value) => this.ColumnsChildChangeHandler(type, index, value)}
-          onDragNdrop={(type, finalType, index) => this.dragNdropHandler(type, finalType, index)}
-          columns={this.props.columns}
-        /> 
-      </div>
+        [
+          <div className="github" key="1">
+            <a href="https://github.com/mam1konyan/AB-to-do" target="_blank" rel="noopener noreferrer">See code in github <FontAwesomeIcon icon={ faGithub }/></a>
+          </div>,
+          <div className="table__body" key="2">
+            <div className="table__title">
+              {this.props.title}
+            </div>
+            <Columns
+              onProsConsChange={(type, index, value) => this.ColumnsChildChangeHandler(type, index, value)}
+              onDragNdrop={(type, finalType, index) => this.dragNdropHandler(type, finalType, index)}
+              columns={this.props.columns}
+            />
+          </div>
+      ]
     );
   }
 }
