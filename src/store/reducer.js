@@ -34,6 +34,15 @@ const reducer = (state = initialState, action) => {
         columns[action.columnType].splice(action.rowIndex, 1);
 
         return { ...newState, columns };
+    } else if (action.type === 'DRAG_FROM_COLUMN') {
+        const _index = columns[action.finalType].length;
+
+        columns[action.finalType].splice(_index - 1, 1);
+        columns[action.finalType][_index] = columns[action.beforeType][action.index];
+        columns[action.finalType][_index + 1] = '';
+        columns[action.beforeType].splice(action.index, 1);
+
+        return { ...newState, columns };
     }
 
     return state;

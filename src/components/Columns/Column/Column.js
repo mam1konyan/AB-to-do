@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
+import { DropTarget } from 'react-dnd';
+import Types from './Row/itemTypes';
 import Row from './Row/Row';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+
+const dropSectionSpec = {
+    
+    drop(props, monitor, component) {
+
+        return { 
+            finalLabel: component.props.label 
+        };
+    }
+};
+
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver(),
+        isOverCurrent: monitor.isOver({ shallow: true }),
+        canDrop: monitor.canDrop(),
+        itemType: monitor.getItemType()
+    };
+}
+
 
 class Column extends Component {
+
     render() {
-        return (
-            <div className="table__childItem">
+        const { connectDropTarget } = this.props;
+
+        let style = {
+            background: this.props.isOverCurrent ? '#27ae60' : null
+        };
+
+        return connectDropTarget(
+            <div 
+                className="table__childItem"
+                style={style}
+            >
                 <div className="table__row--first">{this.props.label}</div>
                 {
                     this.props.valuesArr.map((item, i) => (
@@ -16,6 +47,7 @@ class Column extends Component {
                             index={i}
                             valuesArr={this.props.valuesArr}
                             onProsConsChange={this.props.onProsConsChange}
+                            onDragNdrop={(type, finalType, index) => this.props.onDragNdrop(type, finalType, index)}
                         />
                     ))
                 }
@@ -24,4 +56,4 @@ class Column extends Component {
     }
 };
 
-export default DragDropContext(HTML5Backend)(Column);
+export default DropTarget(Types.ROW, dropSectionSpec, collect)(Column);

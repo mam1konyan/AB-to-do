@@ -1,12 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DragDropContext, DragSource } from 'react-dnd';
+import { DragSource } from 'react-dnd';
 import itemTypes from './itemTypes';
 
 const rowSource = {
     beginDrag(props) {
-        console.log('drag started');
-        return {};
+       return {
+
+        };
+    },
+    endDrag(props, monitor, component) {
+        
+        if (props.label !== monitor.getDropResult().finalLabel) {
+            const   beforeLabel = props.label,
+                    afterLabel = monitor.getDropResult().finalLabel,
+                    index = props.index;
+                    
+            if ( index + 1 === props.valuesArr.length) {
+                alert('Nah, you can\'t do it :)');
+            } else {
+                props.onDragNdrop(beforeLabel, afterLabel, index);
+            }
+        }
+        return {
+
+        };     
     }
 };
 
@@ -27,6 +45,11 @@ class Row extends Component {
             <div 
                 className="table__row" 
                 key={this.props.label + this.props.index}
+                id={this.props.label + this.props.index}
+                style={{
+                    opacity: isDragging ? 0.25 : 1,
+                    cursor: 'move'
+                }}
             >
                 <span className="table__index">{this.props.index + 1}.</span>
                 <input

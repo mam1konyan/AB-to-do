@@ -20,6 +20,10 @@ class App extends Component {
     
   }
 
+  dragNdropHandler = (type, finalType, index) => {
+    this.props.ondragNdrop(type, finalType, index);
+  }
+
   render() {
     return (
       <div className="table__body">
@@ -28,6 +32,7 @@ class App extends Component {
         </div>
         <Columns 
           onProsConsChange={(type, index, value) => this.ColumnsChildChangeHandler(type, index, value)}
+          onDragNdrop={(type, finalType, index) => this.dragNdropHandler(type, finalType, index)}
           columns={this.props.columns}
         /> 
       </div>
@@ -46,7 +51,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddToColumn: (label, index, type) => dispatch({ type: 'ADD_TO_COLUMN', rowLabel: label, rowIndex: index, columnType: type }),
     onEditColumn: (label, index, type) => dispatch({ type: 'EDIT_COLUMN', rowLabel: label, rowIndex: index, columnType: type }),
-    onRemoveFromColumn: (label, index, type) => dispatch({ type: 'REMOVE_FROM_COLUMN', rowLabel: label, rowIndex: index, columnType: type })
+    onRemoveFromColumn: (label, index, type) => dispatch({ type: 'REMOVE_FROM_COLUMN', rowLabel: label, rowIndex: index, columnType: type }),
+    ondragNdrop: (type, finalType, index) => dispatch({ type: 'DRAG_FROM_COLUMN', beforeType: type, finalType: finalType, index: index })
   }
 };
 
