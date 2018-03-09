@@ -27,6 +27,7 @@ class App extends Component {
   }
 
   render() {
+    const { columns, title } = this.props;
     return (
         [
           <div className="github" key="1">
@@ -34,12 +35,12 @@ class App extends Component {
           </div>,
           <div className="table__body" key="2">
             <div className="table__title">
-              {this.props.title}
+              {title}
             </div>
             <Columns
               onProsConsChange={(type, index, value) => this.ColumnsChildChangeHandler(type, index, value)}
               onDragNdrop={(type, finalType, index) => this.dragNdropHandler(type, finalType, index)}
-              columns={this.props.columns}
+              columns={columns}
             />
           </div>
       ]

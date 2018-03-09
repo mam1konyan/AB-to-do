@@ -27,10 +27,10 @@ function collect(connect, monitor) {
 class Column extends Component {
 
     render() {
-        const { connectDropTarget } = this.props;
+        const { connectDropTarget, isOverCurrent, label, valuesArr, onProsConsChange, onDragNdrop } = this.props;
 
         let style = {
-            background: this.props.isOverCurrent ? '#27ae60' : null
+            background: isOverCurrent ? '#27ae60' : null
         };
 
         return connectDropTarget(
@@ -38,16 +38,16 @@ class Column extends Component {
                 className="table__childItem"
                 style={style}
             >
-                <div className="table__row--first">{this.props.label}</div>
+                <div className="table__row--first">{label}</div>
                 {
-                    this.props.valuesArr.map((item, i) => (
+                    valuesArr.map((item, i) => (
                         <Row
-                            key={this.props.label + i}
-                            label={this.props.label}
+                            key={label + i}
+                            label={label}
                             index={i}
-                            valuesArr={this.props.valuesArr}
-                            onProsConsChange={this.props.onProsConsChange}
-                            onDragNdrop={(type, finalType, index) => this.props.onDragNdrop(type, finalType, index)}
+                            valuesArr={valuesArr}
+                            onProsConsChange={onProsConsChange}
+                            onDragNdrop={onDragNdrop}
                         />
                     ))
                 }

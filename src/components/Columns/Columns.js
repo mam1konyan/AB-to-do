@@ -6,16 +6,17 @@ import Column from './Column/Column';
 class ProsCons extends Component {
 
     render(){
+        const { columns, onProsConsChange, onDragNdrop } = this.props;
         return (
             <div className="table__childWrapper">
                 {
-                    Object.keys(this.props.columns).map((item, i) => {
+                    Object.keys(columns).map((item, i) => {
                         return (
                             <Column
-                                onProsConsChange={(type, index, value) => this.props.onProsConsChange(type, index, value)}
-                                onDragNdrop={(type, finalType, index) => this.props.onDragNdrop(type, finalType, index)}
+                                onProsConsChange={onProsConsChange}
+                                onDragNdrop={onDragNdrop}
                                 label={item}
-                                valuesArr={this.props.columns[item]}
+                                valuesArr={columns[item]}
                                 key={i}
                             />
                         )
